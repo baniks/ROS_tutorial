@@ -4,4 +4,5 @@ The image subscriber subscribes to these informations.
 
 libraries: Opencv, rospy
 
-![alt text](out/rqtgraph.png "ROS computation graph (rqt_graph)")
+![alt text](out/rosgraph.png "ROS computation graph (rqt_graph)")
+Issue: The graph only shows one published variable, img_width
