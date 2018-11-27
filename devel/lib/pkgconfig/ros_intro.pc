@@ -1,0 +1,8 @@
+prefix=/home/soubarna/Documents/Workspace/catkin_ws/devel
+
+Name: ros_intro
+Description: Description of ros_intro
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/soubarna/Documents/Workspace/catkin_ws/devel/lib 
+Requires: 
