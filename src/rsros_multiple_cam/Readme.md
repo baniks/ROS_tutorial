@@ -11,11 +11,18 @@ From bag_tools scripts directory, run make_video.py to convert .bag to video
 ## Realsense and ROS interfacing
 Follow the instructions for installing [realsense-ros](https://github.com/IntelRealSense/realsense-ros).
 Connect the cameras.
-Get the serial numbers of the cameras by `rs-enumerate-devices | grep Serial`
+Get the serial numbers of the cameras by
+```
+rs-enumerate-devices | grep Serial`
+```
 Launch the cameras by
 ```
 roslaunch realsense2_camera rs_camera.launch camera:=cam_1 serial_no:=<serial number of the first camera>
 roslaunch realsense2_camera rs_camera.launch camera:=cam_2 serial_no:=<serial number of the second camera>
 ...
+```
+To launch only the camera
+```
+roslaunch realsense2_camera rs_camera.launch camera:=cam_1 serial_no:=<serial number> enable_fisheye:=false enable_depth:=false enable_infra2:=false enable_infra1:=false
 ```
 Run realsense_subscriber.py
