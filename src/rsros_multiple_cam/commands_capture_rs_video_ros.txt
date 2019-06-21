@@ -1,0 +1,31 @@
+# step 1. terminal 1
+roscore
+
+# step 2. terminal 2. connect rs camera and launch rgb in 60 fps
+rs-enumerate-devices | grep Serial
+roslaunch realsense2_camera rs_camera.launch camera:=cam_1 serial_no:=745412070474 enable_fisheye:=false enable_depth:=false enable_infra2:=false enable_infra1:=false color_fps:=60
+roslaunch realsense2_camera rs_camera.launch camera:=cam_2 serial_no:=749512060649 enable_fisheye:=false enable_depth:=false enable_infra2:=false enable_infra1:=false color_fps:=60
+roslaunch realsense2_camera rs_camera.launch camera:=cam_3 serial_no:=819312073028 enable_fisheye:=false enable_depth:=false enable_infra2:=false enable_infra1:=false color_fps:=60
+roslaunch realsense2_camera rs_camera.launch camera:=cam_4 serial_no:=819312071527 enable_fisheye:=false enable_depth:=false enable_infra2:=false enable_infra1:=false color_fps:=60
+roslaunch realsense2_camera rs_camera.launch camera:=cam_5 serial_no:=814412072019 enable_fisheye:=false enable_depth:=false enable_infra2:=false enable_infra1:=false color_fps:=60
+roslaunch realsense2_camera rs_camera.launch camera:=cam_6 serial_no:=819112071869 enable_fisheye:=false enable_depth:=false enable_infra2:=false enable_infra1:=false color_fps:=60
+
+# step 3. terminal 3. open rviz and add topic /cam_1/color/image_raw/compressed
+rosrun rviz rviz
+
+# step 4. run test_rosbag.py to capture feed from cam1 into a .bag file
+cd /home/soubarna/Workspace/catkin_ws2/scripts
+python test_rosbag.py /tmp/cam6_cali_19_6_2019.bag /cam_6/color/image_raw/compressed
+
+# step 5. reindex output bag file
+rosbag reindex /tmp/cam1_cali_19_6_2019.bag
+
+# step 6. convert bag to video
+cd /home/soubarna/Workspace/catkin_ws2/src/srv_tools/bag_tools/scripts
+python make_video.py /cam_6/color/image_raw/compressed /tmp/cam6_cali_19_6_2019.bag --output /home/soubarna/Documents/Datasets/captury/intri_calib/cam6_cali_19_6_2019.mp4 --fps=60
+
+
+
+roslaunch realsense2_camera rs_camera.launch camera:=cam_4 serial_no:=819312071527 enable_fisheye:=false enable_depth:=false enable_infra2:=false enable_infra1:=false color_fps:=60
+
+python test_rosbag.py /tmp/cam4_21_6.bag /cam4/color/image_raw/compressed
